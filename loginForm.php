@@ -34,9 +34,7 @@ session_start();
         </nav>
     </header>
     <div class="box-login">
-        
-            <img src="imgs/login_img.gif">
-
+        <img src="imgs/login_img.gif">
         <div class="login-form">
             <h3 class="hidden">회원 로그인</h3>
             <form id="form1" method="post" action="#" novalidate="novalidate" onsubmit="return false">
