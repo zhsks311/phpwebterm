@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -102,8 +101,8 @@
             서울특별시 강남구 신사동 123-34 | Tel : +82-2-123-4567  Fax: +82-2123-4568 </address>
     </footer>
 </div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.nivo.slider.js"></script>
-<script type="text/javascript" src="scripts/bjqs-1.3.min.js"></script>
 <script type="text/javascript">
     $(window).load(function() {
         $('#slider').nivoSlider();

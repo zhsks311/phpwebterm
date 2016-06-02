@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!doctype html>
 <html>
 <head>
@@ -6,10 +8,11 @@
     <title>Movie</title>
     <link href="css/reset5.css" rel="stylesheet" type="text/css">
     <link href="css/front.css" rel="stylesheet" type="text/css">
-    <link  href="css/themes/default/default.css" rel="stylesheet" type="text/css">
+    <link href="css/themes/default/default.css" rel="stylesheet" type="text/css">
     <link href="css/nivo-slider.css" rel="stylesheet" type="text/css">
     <link href="css/bjqs.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link href="css/login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="wrap">
@@ -23,64 +26,37 @@
         </div>
         <nav>
             <ul>
-                <li class="n1"><a href="company.php">회사소개</a></li>
-                <li class="n2"><a href="product.php">제품정보</a></li>
-                <li class="n3"><a href="community.php">커뮤니티</a></li>
-                <li class="n4"><a href="customer.php">고객지원</a></li>
+                <li class="n1"><a href="intro.php">홈페이지 소개</a></li>
+                <li class="n2"><a href="community.php">커뮤니티</a></li>
+                <li class="n3"><a href="pds.php">자료실</a></li>
+                <li class="n4"><a href="survey.php">선호도 조사</a></li>
             </ul>
         </nav>
     </header>
-    <div class="slider-wrapper theme-default">
-        <div id="slider" class="nivoSlider">
-            <?php
-            for ($i=1;$i<=3;$i++)
-                echo ("<img src=\"imgs/movie_image$i.png\" width=\"944\" height=\"451\">");
-            ?>
+    <div class="box-login">
+        
+            <img src="imgs/login_img.gif">
+
+        <div class="login-form">
+            <h3 class="hidden">회원 로그인</h3>
+            <form id="form1" method="post" action="#" novalidate="novalidate" onsubmit="return false">
+                <fieldset>
+                    <!--                <legend>회원 로그인</legend>-->
+                    <p>아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</p>
+                    <div class="login">
+                        <input type="text" title="아이디" id="txtUserId" name="txtUserId" data-title="아이디를 " data-message="입력하세요." required="required" value="">
+                        <input type="password" title="패스워드" id="txtPassword" name="txtPassword" data-title="패스워드를 " data-message="입력하세요." required="required">
+                    </div>
+                    <div class="save-id"><input type="checkbox" id="save_id"><label for="save_id">아이디 저장</label></div>
+                    <button type="submit" id="submit" title="로그인"><span>로그인</span></button>
+                    <div class="login-option">
+                        <!--                    <a href="/user/login/find-account.aspx">아이디 찾기</a>-->
+                        <!--                    <a href="/user/login/find-pw.aspx?act=pw">비밀번호 찾기</a>-->
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>
-<div>
-    <form id="login" action="loginForm.php" method="POST" accept-charset="utf-8">
-        <input type="text" name="userId" id="userId"/>
-        <input 
-    </form>
-</div>
-
 </body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="scripts/jquery.nivo.slider.js"></script>
-<script type="text/javascript" src="scripts/bjqs-1.3.min.js"></script>
-<script type="text/javascript">
-    $(window).load(function() {
-        $('#slider').nivoSlider();
-    });
-    // 아래는 tab 메뉴
-    $(document).ready(function() {
-        //Default Action
-        $(".tab_content").hide(); //Hide all content
-        $("ul.tabs li:first").addClass("active").show(); //Activate first tab
-        $(".tab_content:first").show(); //Show first tab content
-        //On Click Event
-        $("ul.tabs li").click(function() {
-            $("ul.tabs li").removeClass("active"); //Remove any "active" class
-            $(this).addClass("active"); //Add "active" class to selected tab
-            $(".tab_content").hide(); //Hide all tab content
-            var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-            $(activeTab).fadeIn(); //Fade in the active content
-            return false;
-        });
-    });
-    //
-    $(document).ready(function() {
-
-        $('#slide').bjqs({
-            'animtype' : 'slide',
-            showcontrols : false,
-            showmarkers : false,
-            'width' : 165,
-            'height' : 130
-        });
-
-    });
-</script>
 </html>
