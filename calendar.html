@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/css/main.css?6' />
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/css/fullcalendar.css?3' />
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/js/fullcalendar-1.6.3/fullcalendar/fullcalendar.css' />
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/jquery/jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/jquery/jquery-ui-1.10.3.custom.min.js'></script>
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/fullcalendar/fullcalendar.min.js'></script>
+
+<script>
+
+
+    
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate()-1;
+		var m = date.getMonth()+1;
+		var y = date.getFullYear();
+		if(d<10)
+			d = "0" + d;
+		if(m<10)
+			m = "0" + m;
+		console.log(y + " " + m + " " + d)
+		$('#calendar').fullCalendar({
+			header : {
+				left : 'prev,next today',
+				center : 'title',
+				right : 'month,agendaWeek,agendaDay'
+			},
+			editable : true,
+			events: function(start, end, callback) {
+				$.ajax({
+					url: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt='+ y + m + d,
+					dataType: 'json',
+					success: function(data) {
+						var size = data.boxOfficeResult.dailyBoxOfficeList.length;
+						var i=0;
+						var events = [];
+						console.log(data);
+						for(i=0;i<size;i++){
+							events.push({
+									title: data.boxOfficeResult.dailyBoxOfficeList[i].movieNm ,
+									start: data.boxOfficeResult.dailyBoxOfficeList[i].openDt  // will be parsed
+							});
+						}
+					
+						callback(events);
+					}
+				});
+			}
+		});
+	});
+	
+
+</script>
+</head>
+<body style="background-color:white;">
+	<div id='calendar' style='margin: 3em 0; font-size: 13px'></div>
+</body>
+</html>
